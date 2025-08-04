@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo - Разработчик мобильных приложений</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #1976D2, #03DAC5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #1976D2;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #1976D2, #03DAC5);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #1976D2;
+        }
+
+        .skill-card h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #1976D2, #03DAC5);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #1976D2 0%, #03DAC5 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact h2::after {
+            background: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+
+            .content {
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(25, 118, 210, 0.1) 0%, rgba(3, 218, 197, 0.1) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #1976D2;
+            margin: 20px 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1976D2;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="avatar">N</div>
+            <h1>Neo</h1>
+            <p>Mobile Developer | Android & Cross-Platform Apps</p>
+            <p>📍 Алматы, Казахстан</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/neo-dev" target="_blank">GitHub</a>
+                <a href="mailto:neo@example.com">Email</a>
+                <a href="https://t.me/neo_dev" target="_blank">Telegram</a>
+                <a href="https://linkedin.com/in/neo-dev" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- About Section -->
+            <section class="section">
+                <h2>👨‍💻 Обо мне</h2>
+                <div class="highlight">
+                    <p>Привет! Я Neo - разработчик мобильных приложений из Алматы. Специализируюсь на создании качественных Android приложений и кроссплатформенных решений. Увлечен образовательными технологиями и созданием приложений, которые делают обучение более доступным.</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2+</span>
+                        <span>Года опыта</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span>Проектов</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span>Языка программирования</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section">
+                <h2>🛠️ Навыки и технологии</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Mobile Development</h3>
+                        <p>Android Native, Kotlin, Java, Jetpack Compose, Material Design, MVVM архитектура</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Backend & APIs</h3>
+                        <p>REST API, Retrofit, Room Database, SQLite, Google Sheets API, Firebase</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Tools & Platforms</h3>
+                        <p>Android Studio, Git, GitHub, Gradle, Proguard, Google Play Console</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Languages</h3>
+                        <p>Kotlin, Java, JavaScript, HTML/CSS, SQL</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="section">
+                <h2>🚀 Проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Mektep Sozdik</h3>
+                        <p>Трехъязычный словарь школьных терминов для учащихся Казахстана. Поддерживает казахский, русский и английский языки. Работает в офлайн режиме.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Jetpack Compose</span>
+                            <span class="tech-tag">Room</span>
+                            <span class="tech-tag">Retrofit</span>
+                            <span class="tech-tag">Material 3</span>
+                        </div>
+                        <p><strong>Статус:</strong> В разработке | Готовится к публикации в Google Play</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Educational Tools</h3>
+                        <p>Коллекция образовательных Android приложений для школьников. Включает калькуляторы, конвертеры единиц и справочные материалы.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Android</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">SQLite</span>
+                        </div>
+                        <p><strong>Статус:</strong> Концепция</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="section">
+                <h2>💼 Опыт</h2>
+                <div class="highlight">
+                    <h3>Mobile Developer</h3>
+                    <p><strong>Freelance</strong> | 2023 - настоящее время</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Разработка Android приложений с нуля</li>
+                        <li>Интеграция с внешними API и базами данных</li>
+                        <li>Оптимизация производительности и пользовательского опыта</li>
+                        <li>Публикация приложений в Google Play Store</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <h2>🎓 Образование</h2>
+                <div class="highlight">
+                    <h3>Самообразование в области разработки ПО</h3>
+                    <p><strong>Онлайн курсы и практика</strong> | 2022 - настоящее время</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Android Development with Kotlin</li>
+                        <li>Jetpack Compose Modern UI</li>
+                        <li>Clean Architecture & MVVM</li>
+                        <li>Google Play Store Publishing</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>📧 Связаться со мной</h2>
+            <p>Открыт для новых проектов и сотрудничества. Если у вас есть интересная идея для мобильного приложения или нужна помощь с существующим проектом - напишите мне!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:neo@example.com">neo@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="https://t.me/neo_dev" target="_blank">@neo_dev</a>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <a href="https://github.com/neo-dev" target="_blank">GitHub</a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="https://linkedin.com/in/neo-dev" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Простая анимация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section, .contact');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
